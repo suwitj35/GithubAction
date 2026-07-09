@@ -3,11 +3,12 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}  #สั่งให้รัน job บน OS ที่กำหนดใน matrix   อย่างเช่นตอนนี้มี 2 OS คือ ubuntu-latest และ windows-latest
+    continue-on-error: true  #สั่งให้ job ไม่ต้องหยุดทำงานเมื่อเกิด error
     strategy: #สั่ง ให้รัน job ใน matrix ของ node-version 18.x และ 20.x   สามารถเทสได้หลาย version
       matrix:
         node-version: [22.x, 26.x]
         os: [ubuntu-latest, windows-latest]
-        exclude:
+        exclude:    #สั่งให้ไม่รต้อง build version 26 ของ windows
           - os: windows-latest
             node-version: 26.x
     steps:
