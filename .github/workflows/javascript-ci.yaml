@@ -7,11 +7,9 @@ jobs:
       matrix:
         node-version: [22.x, 26.x]
         os: [ubuntu-latest, windows-latest]
-       exclude:
+        exclude:
           - os: windows-latest
             node-version: 26.x
-
-
     steps:
       - name: Checkout sosurce code #สั่งให้ทำการ checkout source code จาก repository
         uses: actions/checkout@v7.0.0
